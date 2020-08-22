@@ -1,0 +1,54 @@
+@mixin font-face($font-family, $url, $font-weight, $font-style) {
+    @font-face {
+        font-display: swap;
+        font-family: '#{$font-family}';
+        src: url('#{$url}.eot');
+        src: url('#{$url}.eot?#iefix') format('embedded-opentype'),
+        url('#{$url}.woff') format('woff'),
+        url('#{$url}.ttf') format('truetype'),
+        url('#{$url}.svg') format('svg');
+        font-weight: $font-weight;
+        font-style: $font-style;
+    }
+}
+
+@mixin itemAfter($pos: absolute, $content: '') {
+    content: $content;
+    position: $pos;
+}
+@mixin clearBoth {
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
+@mixin placeholder {
+    &::-webkit-input-placeholder { @content; }
+    &:-moz-placeholder           { @content; }
+    &::-moz-placeholder          { @content; }
+    &:-ms-input-placeholder      { @content; }
+}
+
+@mixin linear-gradient($direction, $fromColor, $toColor) {
+    background-color: $toColor; /* Fallback Color */
+    background-image: -webkit-gradient(linear, $direction, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient($direction, $fromColor, $toColor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+    background-image: -moz-linear-gradient($direction, $fromColor, $toColor); /* FF3.6 */
+    background-image: -ms-linear-gradient($direction, $fromColor, $toColor); /* IE10 */
+    background-image: -o-linear-gradient($direction, $fromColor, $toColor); /* Opera 11.10+ */
+    background-image: linear-gradient($direction, $fromColor, $toColor);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}
+
+@mixin radial-gradient($innerColor: #555, $outerColor: #333)  {
+    background: $outerColor;/* Old Browsers */
+    background: -moz-radial-gradient(center, ellipse cover, $innerColor 0%, $outerColor 100%); /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, $innerColor), color-stop(100%, $outerColor));/* Chrome, Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover, $innerColor 0%, $outerColor 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover, $innerColor 0%, $outerColor 100%); /* Opera 11.10+ */
+    background: -ms-radial-gradient(center, ellipse cover, $innerColor 0%, $outerColor 100%); /* IE 10+ */
+    background: radial-gradient(ellipse at center, $innerColor 0%, $outerColor 100%);/* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#171829', GradientType=1 );/* IE6-9 fallback on horizontal gradient */
+}
